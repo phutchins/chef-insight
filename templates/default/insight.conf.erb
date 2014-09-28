@@ -1,0 +1,35 @@
+ # insight.conf
+
+description "An open-source frontend for the Insight API. The Insight API provides you with a convenient, powerful and simple way to query and broadcast data on the bitcoin network and build your own services with it."
+
+start on started networking
+stop on runlevel [016]
+
+setuid insight
+
+
+limit nofile 1000000 1000000
+
+
+console log
+
+script
+
+  mkdir -p /opt/insight
+  cd /opt/insight
+  export USER="insight"
+  export HOME="/home/$USER"
+  export NODE_ENV=production
+  export INSIGHT_NETWORK=testnet
+  export BITCOIND_USER=<%= @bitcoind_user %>
+  export BITCOIND_PASS=<%= @bitcoind_pass %>
+  export BITCOIND_HOST=<%= @bitcoind_host %>
+  export BITCOIND_PORT=20001
+  export BITCOIND_P2P_PORT=20000
+
+  export NVM_DIR="/home/insight/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  npm start
+end script
+
+respawn
