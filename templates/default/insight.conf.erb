@@ -1,33 +1,56 @@
  # insight.conf
 
+# Available environment variables
+# BITCOIND_HOST         # RPC bitcoind host
+# BITCOIND_PORT         # RPC bitcoind Port
+# BITCOIND_P2P_HOST     # P2P bitcoind Host (will default to BITCOIND_HOST, if specified)
+# BITCOIND_P2P_PORT     # P2P bitcoind Port
+# BITCOIND_USER         # RPC username
+# BITCOIND_PASS         # RPC password
+# BITCOIND_DATADIR      # bitcoind datadir. 'testnet3' will be appended automatically if testnet is used. NEED to finish with '/'. e.g: `/vol/data/`
+# INSIGHT_NETWORK [= 'livenet' | 'testnet']
+# INSIGHT_PORT          # insight api port
+# INSIGHT_DB            # Path where to store insight's internal DB. (defaults to $HOME/.insight)
+# INSIGHT_SAFE_CONFIRMATIONS=6  # Nr. of confirmation needed to start caching transaction information
+# INSIGHT_IGNORE_CACHE  # True to ignore cache of spents in transaction, with more than INSIGHT_SAFE_CONFIRMATIONS confirmations. This is useful for tracking double spents for old transactions.
+# ENABLE_MAILBOX # if "true" will enable mailbox plugin
+# ENABLE_CLEANER # if "true" will enable message db cleaner plugin
+# ENABLE_MONITOR # if "true" will enable message db monitor plugin
+# ENABLE_CURRENCYRATES # if "true" will enable a plugin to obtain historic conversion rates for various currencies
+# ENABLE_RATELIMITER # if "true" will enable the ratelimiter plugin
+# LOGGER_LEVEL # defaults to 'info', can be 'debug','verbose','error', etc.
+# ENABLE_HTTPS # if "true" it will server using SSL/HTTPS
+# ENABLE_EMAILSTORE # if "true" will enable a plugin to store data with a validated email address
+# INSIGHT_EMAIL_CONFIRM_HOST # Only meanfull if ENABLE_EMAILSTORE is enable. Hostname for the confirm URLs. E.g: 'https://insight.bitpay.com'
+#
+
 description "An open-source frontend for the Insight API. The Insight API provides you with a convenient, powerful and simple way to query and broadcast data on the bitcoin network and build your own services with it."
 
 start on started networking
 stop on runlevel [016]
 
-setuid insight
-
+setuid <%= @insight_user %>
 
 limit nofile 1000000 1000000
-
 
 console log
 
 script
 
-  mkdir -p /opt/insight
-  cd /opt/insight
-  export USER="insight"
-  export HOME="/home/$USER"
-  export NODE_ENV=production
-  export INSIGHT_NETWORK=testnet
-  export BITCOIND_USER=<%= @bitcoind_user %>
-  export BITCOIND_PASS=<%= @bitcoind_pass %>
-  export BITCOIND_HOST=<%= @bitcoind_host %>
-  export BITCOIND_PORT=20001
-  export BITCOIND_P2P_PORT=20000
+  cd <%= @instance_dir %>
+  export USER='<%= @insight_user %>'
+  export HOME='<%= @insight_home %>'
+  export INSIGHT_NETWORK='<%= @insight_network %>'
+  export INSIGHT_PORT='<%= @insight_port %>'
+  export INSIGHT_DB=<%= @insight_db %>
+  export INSIGHT_MAILBOX=<%= @insight_mailbox %>
+  export BITCOIND_USER='<%= @bitcoind_user %>'
+  export BITCOIND_PASS='<%= @bitcoind_pass %>'
+  export BITCOIND_HOST='<%= @bitcoind_host %>'
+  export BITCOIND_PORT='<%= @bitcoind_rpcport %>'
+  export BITCOIND_P2P_PORT='<%= @bitcoind_port %>'
 
-  export NVM_DIR="/home/insight/.nvm"
+  export NVM_DIR="<%= @insight_home %>/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
   npm start
 end script
