@@ -19,13 +19,13 @@ default['insight']['config']['bitcoind']['port'] = '8333'
 default['insight']['config']['bitcoind']['rpcport'] = '8332'
 
 # NVM and NodeJS configuration
-default['nvm']['nodejs_version'] = 'v0.10.28'
-default['nvm']['repository'] = 'git://github.com/creationix/nvm.git'
-default['nvm']['reference'] = 'v0.16.1'
-default['nvm']['user'] = 'insight'
-default['nvm']['group'] = 'insight'
-default['nvm']['user_install'] = true
-default['nvm']['user_home_dir'] = '/opt/insight'
+default['insight']['nodejs_version'] = 'v0.10.28'
+default['insight']['repository'] = 'git://github.com/creationix/nvm.git'
+default['insight']['reference'] = 'v0.16.1'
+default['insight']['user'] = 'insight'
+default['insight']['group'] = 'insight'
+default['insight']['user_install'] = true
+default['insight']['user_home_dir'] = '/opt/insight'
 
 # Example of how to use multiple instances
 #default['insight']['instances']['insight-testnet']['name'] = 'insight-testnet'
