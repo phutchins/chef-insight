@@ -5,13 +5,13 @@
 end
 
 # NVM and NodeJS configuration
-node['nvm']['nodejs_version'] = node['insight']['nodejs_version']
-node['nvm']['repository'] = node['insight']['repository']
-node['nvm']['reference'] = node['insight']['reference']
-node['nvm']['user'] = node['insight']['user']
-node['nvm']['group'] = node['insight']['group']
-node['nvm']['user_install'] = node['insight']['user_install']
-node['nvm']['user_home_dir'] = node['insight']['user_home_dir']
+node.set['nvm']['nodejs_version'] = node['insight']['nodejs_version']
+node.set['nvm']['repository'] = node['insight']['repository']
+node.set['nvm']['reference'] = node['insight']['reference']
+node.set['nvm']['user'] = node['insight']['user']
+node.set['nvm']['group'] = node['insight']['group']
+node.set['nvm']['user_install'] = node['insight']['user_install']
+node.set['nvm']['user_home_dir'] = node['insight']['user_home_dir']
 
 include_recipe 'nvm'
 nvm_install node['nvm']['nodejs_version'] do
