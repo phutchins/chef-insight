@@ -60,9 +60,14 @@ node['insight']['instances'].each do |instance|
     interpreter 'bash'
     user config_merged['user']
     cwd File.join(instance_dir)
+    environment Hash[ 'HOME' => instance_dir ]
     flags '-l'
-    command "npm install"
-    action :nothing
+    # This needs to source nvm from the correct location depending on if a user install was used or global. It is currently hardcoded to user.
+    code <<-EOH
+      source ~/.nvm/nvm.sh
+      npm install
+    EOH
+    #action :nothing
   end
 
   service "#{config_merged['name']}" do

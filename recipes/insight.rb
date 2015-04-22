@@ -30,7 +30,7 @@ instances.each do |instance|
     repository node['insight']['repository']
     revision node['insight']['revision']
     action :sync
-    notifies :run, "script[insight_setup_#{instance}]", :immediately
+    notifies :run, "bash[insight_setup_#{instance}]", :immediately
   end
 
   script "insight_setup_#{instance}" do
@@ -38,8 +38,11 @@ instances.each do |instance|
     user node['insight']['user']
     cwd File.join(node['insight']['base_dir'], instance)
     flags '-l'
-    command "npm install"
-    action :nothing
+    code <<-EOH
+      source ~/.nvm/nvm.sh
+      npm install
+    EOH
+    #action :nothing
   end
 end
 
