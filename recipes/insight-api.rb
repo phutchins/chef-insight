@@ -70,7 +70,7 @@ node['insight']['instances'].each do |instance|
     #action :nothing
   end
 
-  service "#{config_merged['name']}" do
+  service config_merged['name'] do
     action :start
   end
 end
