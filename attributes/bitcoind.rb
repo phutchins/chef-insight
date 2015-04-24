@@ -25,5 +25,5 @@ default['bitcoind']['config']['upnp'] = '1'
 default['bitcoind']['config']['server'] = '1'
 default['bitcoind']['config']['rpcssl'] = '0'
 default['bitcoind']['config']['rpcallowip'] = ['127.0.0.1']
-default['bitcoind']['config']['txindex'] = '0'
+default['bitcoind']['config']['txindex'] = '1'
 default['bitcoind']['config']['listen'] = '1'
