@@ -49,6 +49,9 @@ script
   export BITCOIND_HOST='<%= @bitcoind_host %>'
   export BITCOIND_PORT='<%= @bitcoind_rpcport %>'
   export BITCOIND_P2P_PORT='<%= @bitcoind_port %>'
+<% if @bitcoind_datadir_local %>
+  export BITCOIND_DATADIR='<%= @bitcoind_datadir %>'
+<% end %>
 
   export NVM_DIR="<%= @insight_home %>/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

@@ -41,7 +41,9 @@ node['insight']['instances'].each do |instance|
       :bitcoind_pass => config_merged['bitcoind']['pass'],
       :bitcoind_host => config_merged['bitcoind']['host'],
       :bitcoind_port => config_merged['bitcoind']['port'],
-      :bitcoind_rpcport => config_merged['bitcoind']['rpcport']
+      :bitcoind_rpcport => config_merged['bitcoind']['rpcport'],
+      :bitcoind_datadir_local => config_merged['bitcoind']['data_dir_local'],
+      :bitcoind_datadir => config_merged['bitcoind']['data_dir']
     })
     action :create
   end

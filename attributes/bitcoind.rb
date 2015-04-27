@@ -1,5 +1,6 @@
 default['bitcoind']['instances']['livenet']['name'] = 'bitcoind-livenet'
 default['bitcoind']['instances']['livenet']['data_dir'] = '/opt/bitcoind-livenet'
+default['bitcoind']['instances']['livenet']['data_dir_local'] = false
 default['bitcoind']['instances']['livenet']['testnet'] = '0'
 default['bitcoind']['instances']['livenet']['port'] = '8333'
 default['bitcoind']['instances']['livenet']['rpcport'] = '8332'
@@ -9,6 +10,7 @@ default['bitcoind']['instances']['livenet']['password'] = 'jfl3b9dhJff00b01Eql'
 
 default['bitcoind']['instances']['testnet']['name'] = 'bitcoind-testnet'
 default['bitcoind']['instances']['testnet']['data_dir'] = '/opt/bitcoind-testnet'
+default['bitcoind']['instances']['testnet']['data_dir_local'] = false
 default['bitcoind']['instances']['testnet']['testnet'] = '1'
 default['bitcoind']['instances']['testnet']['port'] = '18333'
 default['bitcoind']['instances']['testnet']['rpcport'] = '18332'
