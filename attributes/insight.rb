@@ -26,6 +26,7 @@ default['insight']['user'] = 'insight'
 default['insight']['group'] = 'insight'
 default['insight']['user_install'] = true
 default['insight']['user_home_dir'] = '/opt/insight'
+default['insight']['add_groups'] = ['bitcoind']
 
 # Example of how to use multiple instances
 #default['insight']['instances']['insight-testnet']['name'] = 'insight-testnet'

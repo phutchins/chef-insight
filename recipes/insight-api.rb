@@ -10,6 +10,14 @@ user node['insight']['config']['user'] do
   action :create
 end
 
+node['insight']['add_groups'].each do |my_group|
+  group my_group do
+    action :modify
+    members node['insight']['user']
+    append true
+  end
+end
+
 directory node['insight']['config']['base_dir'] do
   owner node['insight']['config']['user']
   group node['insight']['config']['user']

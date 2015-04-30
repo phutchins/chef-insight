@@ -4,7 +4,7 @@ maintainer_email 'flipture@gmail.com'
 license          'BSD'
 description      'Installs/Configures chef-insight'
 long_description 'Installs/Configures chef-insight'
-version          '0.2.5'
+version          '0.2.6'
 
 depends 'nvm'
 depends 'chef-bitcoind'
