@@ -55,7 +55,7 @@ script
 
   export NVM_DIR="<%= @insight_home %>/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  npm start
+  npm start <%= @logger_string %>
 end script
 
 respawn

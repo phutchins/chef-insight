@@ -27,6 +27,9 @@ default['insight']['group'] = 'insight'
 default['insight']['user_install'] = true
 default['insight']['user_home_dir'] = '/opt/insight'
 default['insight']['add_groups'] = ['bitcoind']
+default['insight']['log_to_file'] = true
+default['insight']['link_logs'] = true
+default['insight']['log_dir'] = File.join(node['insight']['config']['base_dir'], "log")
 
 # Example of how to use multiple instances
 #default['insight']['instances']['insight-testnet']['name'] = 'insight-testnet'
