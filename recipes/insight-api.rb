@@ -4,6 +4,9 @@
 #
 # Copyright (c) 2014 The Authors, All Rights Reserved.
 
+include_recipe 'insight::install-dependencies'
+include_recipe 'insight::install-bitcoind'
+
 user node['insight']['config']['user'] do
   home node['insight']['config']['base_dir']
   shell '/bin/bash'
@@ -12,7 +15,7 @@ end
 
 node['insight']['add_groups'].each do |my_group|
   group my_group do
-    action :modify
+    action :create
     members node['insight']['user']
     append true
   end
@@ -37,9 +40,6 @@ link '/var/log/insight' do
   action :create
 end if node['insight']['link_logs']
 
-include_recipe 'insight::install-dependencies'
-include_recipe 'insight::install-bitcoind'
-
 node['insight']['instances'].each do |instance|
   config_merged = instance[1].to_hash
   node['insight']['config'].each do |key, value|
@@ -47,7 +47,7 @@ node['insight']['instances'].each do |instance|
   end
 
   if node['insight']['log_to_file']
-    logger_string = ">> #{File.join(node['insight']['log_dir'], config_merged['name']+".log")}"
+    logger_string = "2&>1 #{File.join(node['insight']['log_dir'], config_merged['name']+".log")}"
   else
     logger_string = ""
   end
