@@ -4,9 +4,6 @@
 #
 # Copyright (c) 2014 The Authors, All Rights Reserved.
 
-include_recipe 'insight::install-dependencies'
-include_recipe 'insight::install-bitcoind'
-
 user node['insight']['config']['user'] do
   home node['insight']['config']['base_dir']
   shell '/bin/bash'
@@ -27,6 +24,9 @@ directory node['insight']['config']['base_dir'] do
   recursive true
   action :create
 end
+
+include_recipe 'insight::install-dependencies'
+include_recipe 'insight::install-bitcoind'
 
 directory node['insight']['log_dir'] do
   owner node['insight']['config']['user']
