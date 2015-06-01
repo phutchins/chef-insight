@@ -47,7 +47,7 @@ node['insight']['instances'].each do |instance|
   end
 
   if node['insight']['log_to_file']
-    logger_string = ">> #{File.join(node['insight']['log_dir'], config_merged['name']+".log")} 2&>1"
+    logger_string = ">> #{File.join(node['insight']['log_dir'], config_merged['name']+".log")} 2>&1"
   else
     logger_string = ""
   end
