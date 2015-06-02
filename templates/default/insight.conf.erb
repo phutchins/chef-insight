@@ -58,4 +58,7 @@ script
   npm start <%= @logger_string %>
 end script
 
+post-stop exec sleep 5
+
 respawn
+respawn limit 10 10
