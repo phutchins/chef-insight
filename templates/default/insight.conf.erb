@@ -58,6 +58,14 @@ script
   npm start <%= @logger_string %>
 end script
 
+pre-start script
+<% if @bitcoind_datadir_local %>
+  # Set permissions for bitcoind datadir so that we can read files
+  find $BITCOIND_DATADIR/* -type d -print0 | xargs -0 chmod 2750
+  find $BITCOIND_DATADIR/. -type f -print0 | xargs -0 chmod 0640
+<% end %>
+end script
+
 post-stop exec sleep 5
 
 respawn
