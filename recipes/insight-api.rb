@@ -40,6 +40,11 @@ link '/var/log/insight' do
   action :create
 end if node['insight']['link_logs']
 
+file '/etc/logrotate.d/insight.logrotate' do
+  path '/etc/logrotate.d/insight'
+  action :create
+end
+
 node['insight']['instances'].each do |instance|
   config_merged = instance[1].to_hash
   node['insight']['config'].each do |key, value|
@@ -73,6 +78,26 @@ node['insight']['instances'].each do |instance|
       :bitcoind_datadir => File.join(config_merged['bitcoind']['data_dir'], '/')
     })
     action :create
+  end
+
+  permissions_script = <<-SCRIPT
+    find #{config_merged['bitcoind']['data_dir']} -type d -print0 | xargs -0 chmod 2750
+    find #{config_merged['bitcoind']['data_dir']} -type f -print0 | xargs -0 chmod 0640
+  SCRIPT
+
+  file "/usr/local/bin/fix_bitcoind_perms_for_insight_#{config_merged['name']}" do
+    content permissions_script
+    owner "root"
+    group "root"
+    mode 00755
+  end
+
+  script "run_fix_bitcoind_perms_#{config_merged['name']}" do
+    interpreter "bash"
+    user "root"
+    code <<-EOH
+      /usr/local/bin/fix_bitcoind_perms_for_insight_#{config_merged['name']}
+    EOH
   end
 
   git File.join(instance_dir) do
