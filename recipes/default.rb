@@ -1,1 +1,1 @@
-include_recipe 'insight::insight-api'
+include_recipe 'insight::insight'

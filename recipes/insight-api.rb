@@ -13,14 +13,14 @@ end
 node['insight']['add_groups'].each do |my_group|
   group my_group do
     action :create
-    members node['insight']['user']
+    members node['insight']['config']['user']
     append true
   end
 end
 
 directory node['insight']['config']['base_dir'] do
   owner node['insight']['config']['user']
-  group node['insight']['config']['user']
+  group node['insight']['config']['group']
   recursive true
   action :create
 end
@@ -28,19 +28,19 @@ end
 include_recipe 'insight::install-dependencies'
 include_recipe 'insight::install-bitcoind'
 
-directory node['insight']['log_dir'] do
+directory node['insight']['config']['log_dir'] do
   owner node['insight']['config']['user']
-  group node['insight']['config']['user']
+  group node['insight']['config']['group']
   recursive true
   action :create
 end
 
 link '/var/log/insight' do
-  to node['insight']['log_dir']
+  to node['insight']['config']['log_dir']
   action :create
-end if node['insight']['link_logs']
+end if node['insight']['config']['link_logs']
 
-file '/etc/logrotate.d/insight.logrotate' do
+file 'insight.logrotate' do
   path '/etc/logrotate.d/insight'
   action :create
 end
@@ -51,8 +51,8 @@ node['insight']['instances'].each do |instance|
     config_merged[key] = value unless config_merged.has_key? key
   end
 
-  if node['insight']['log_to_file']
-    logger_string = ">> #{File.join(node['insight']['log_dir'], config_merged['name']+".log")} 2>&1"
+  if node['insight']['config']['log_to_file']
+    logger_string = ">> #{File.join(node['insight']['config']['log_dir'], config_merged['name']+".log")} 2>&1"
   else
     logger_string = ""
   end
@@ -102,7 +102,7 @@ node['insight']['instances'].each do |instance|
 
   git File.join(instance_dir) do
     user config_merged['user']
-    group config_merged['user']
+    group config_merged['group']
     repository config_merged['api-repository']
     revision config_merged['revision']
     action :sync
