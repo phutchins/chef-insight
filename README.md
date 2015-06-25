@@ -120,11 +120,11 @@ See `attributes/insight.rb` for default values.
 
 ## Recipes
 
-`default` - Calls the insight-api recipe and installs insight-api only
+`default` - Calls the insight-ui recipe and installs insight-ui and insight-api
 
 `insight-api` - Installs insight api only
 
-`insight` - Installs insight api and UI
+`insight-ui` - Installs insight api and UI
 
 `install-bitcoind` - Automatically called and installs and configures bitcoind
 
