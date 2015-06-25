@@ -51,7 +51,7 @@ node['insight']['instances'].each do |instance|
     config_merged[key] = value unless config_merged.has_key? key
   end
 
-  if node['insight']['config']['log_to_file']
+  if node['insight']['log_to_file']
     logger_string = ">> #{File.join(node['insight']['config']['log_dir'], config_merged['name']+".log")} 2>&1"
   else
     logger_string = ""
