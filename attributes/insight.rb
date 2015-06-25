@@ -16,8 +16,12 @@ default['insight']['config']['user'] = 'insight'
 default['insight']['config']['group'] = 'insight'
 default['insight']['config']['bitcoind']['host'] = 'localhost'
 default['insight']['config']['enable_email_store'] = false
-default['insight']['config']['enable_mailbox'] = false
 default['insight']['config']['log_dir'] = File.join(node['insight']['config']['base_dir'], "log")
+default['insight']['config']['ratelimiter'] =  false
+default['insight']['config']['monitor'] = false
+default['insight']['config']['enable_mailbox'] = false
+default['insight']['config']['email_confirm_host'] = 'http://localhost'
+
 
 # Bitcoind configuration
 default['insight']['config']['bitcoind']['user'] = 'bitcoin_user'

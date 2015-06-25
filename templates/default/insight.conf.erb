@@ -52,6 +52,18 @@ script
 <% if @bitcoind_datadir_local %>
   export BITCOIND_DATADIR='<%= @bitcoind_datadir %>'
 <% end %>
+<% if @insight_enable_ratelimiter %>
+  export ENABLE_RATELIMITER=<%= @insight_enable_ratelimiter %>
+<% end %>
+<% if @insight_enable_monitor %>
+  export ENABLE_MONITOR=<%= @insight_enable_monitor %>
+<% end %>
+<% if @insight_enable_emailstore %>
+  export ENABLE_EMAILSTORE=<%= @insight_enable_emailstore %>
+<% end %>
+<% if @insight_email_confirm_host %>
+  export INSITHT_EMAIL_CONFIRM_HOST='<%= @insight_email_confirm_host %>'
+<% end %>
 
   export NVM_DIR="<%= @insight_home %>/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
