@@ -93,9 +93,9 @@ node['insight']['instances'].each do |instance|
       :bitcoind_rpcport => config_merged['bitcoind']['rpcport'],
       :bitcoind_datadir_local => config_merged['bitcoind']['data_dir_local'],
       :bitcoind_datadir => File.join(config_merged['bitcoind']['data_dir'], '/'),
-      :insight_enable_ratelimiter => config_merged['ratelimiter'],
-      :insight_enable_monitor => config_merged['monitor'],
-      :insight_enable_emailstore => config_merged['emailstore'],
+      :insight_enable_ratelimiter => config_merged['enable_ratelimiter'],
+      :insight_enable_monitor => config_merged['enable_monitor'],
+      :insight_enable_emailstore => config_merged['enable_emailstore'],
       :insight_email_confirm_host => config_merged['email_confirm_host']
     })
     action :create
