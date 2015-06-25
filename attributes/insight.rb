@@ -20,7 +20,8 @@ default['insight']['config']['log_dir'] = File.join(node['insight']['config']['b
 default['insight']['config']['ratelimiter'] =  false
 default['insight']['config']['monitor'] = false
 default['insight']['config']['enable_mailbox'] = false
-default['insight']['config']['email_confirm_host'] = 'http://localhost'
+default['insight']['config']['enable_emailstore'] = false
+default['insight']['config']['email_confirm_host'] = ''
 
 
 # Bitcoind configuration
