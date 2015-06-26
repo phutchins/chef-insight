@@ -125,7 +125,7 @@ node['insight']['instances'].each do |instance|
       source ~/.nvm/nvm.sh
       npm install
     EOH
-    #action :nothing
+    action :nothing
   end
 
   service config_merged['name'] do
