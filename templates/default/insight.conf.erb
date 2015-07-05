@@ -42,8 +42,8 @@ script
   export HOME='<%= @insight_home %>'
   export INSIGHT_NETWORK='<%= @insight_network %>'
   export INSIGHT_PORT='<%= @insight_port %>'
-  export INSIGHT_DB=<%= @insight_db %>
-  export INSIGHT_MAILBOX=<%= @insight_mailbox %>
+  export INSIGHT_DB='<%= @insight_db %>'
+  export INSIGHT_MAILBOX='<%= @insight_mailbox %>'
   export BITCOIND_USER='<%= @bitcoind_user %>'
   export BITCOIND_PASS='<%= @bitcoind_pass %>'
   export BITCOIND_HOST='<%= @bitcoind_host %>'
@@ -53,15 +53,15 @@ script
   export BITCOIND_DATADIR='<%= @bitcoind_datadir %>'
 <% end %>
 <% if @insight_enable_ratelimiter %>
-  export ENABLE_RATELIMITER=<%= @insight_enable_ratelimiter %>
+  export ENABLE_RATELIMITER='<%= @insight_enable_ratelimiter %>'
 <% end %>
 <% if @insight_enable_monitor %>
-  export ENABLE_MONITOR=<%= @insight_enable_monitor %>
+  export ENABLE_MONITOR='<%= @insight_enable_monitor %>'
 <% end %>
 <% if @insight_enable_emailstore %>
-  export ENABLE_EMAILSTORE=<%= @insight_enable_emailstore %>
+  export ENABLE_EMAILSTORE='<%= @insight_enable_emailstore %>'
 <% end %>
-<% if @insight_email_confirm_host %>
+<% if @insight_email_confirm_host && @insight_email_confirm_host != ''%>
   export INSITHT_EMAIL_CONFIRM_HOST='<%= @insight_email_confirm_host %>'
 <% end %>
 

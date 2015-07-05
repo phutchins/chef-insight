@@ -82,7 +82,7 @@ node['insight']['instances'].each do |instance|
       :insight_email_confirm_host => config_merged['email_confirm_host']
    })
     action :create
-    notifies :restart, "service[insight-#{config_merged['name']}]"
+    notifies :restart, "service[#{config_merged['name']}]"
   end
 
   permissions_script = <<-SCRIPT
