@@ -125,8 +125,8 @@ node['insight']['instances'].each do |instance|
   git instance_dir do
     user config_merged['user']
     group config_merged['group']
-    repository config_merged['repository']
-    revision config_merged['revision']
+    repository config_merged['ui-repository']
+    revision config_merged['ui-revision']
     action :sync
     notifies :run, "script[insight_setup_#{config_merged['name']}]", :immediately
   end

@@ -109,7 +109,7 @@ node['insight']['instances'].each do |instance|
     user config_merged['user']
     group config_merged['group']
     repository config_merged['api-repository']
-    revision config_merged['revision']
+    revision config_merged['api-revision']
     action :sync
     notifies :run, "script[insight_api_setup_#{config_merged['name']}]", :immediately
   end
