@@ -142,6 +142,7 @@ node['insight']['instances'].each do |instance|
       npm install
       npm install bower
       node_modules/.bin/bower install
+      node_modules/.bin/grunt compile
     EOH
     action :nothing
   end
